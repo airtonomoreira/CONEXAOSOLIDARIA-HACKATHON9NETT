@@ -192,3 +192,4 @@
 /home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/TransparencyService/TransparencyService/bin/Debug/net9.0/Prometheus.Client.AspNetCore.dll
 /home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/TransparencyService/TransparencyService/bin/Debug/net9.0/Serilog.Enrichers.Environment.dll
 /home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/TransparencyService/TransparencyService/bin/Debug/net9.0/Serilog.Enrichers.Thread.dll
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/TransparencyService/TransparencyService/obj/Debug/net9.0/TransparencyService.sourcelink.json
