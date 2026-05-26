@@ -30,11 +30,11 @@ jobs:
 
     - name: Build Docker images
       run: |
-        docker build -f docker/AuthService.Dockerfile -t AIRTONMOREIRA/auth-service:${{ github.sha }} .
-        docker build -f docker/CampaignService.Dockerfile -t AIRTONMOREIRA/campaign-service:${{ github.sha }} .
-        docker build -f docker/DonationService.Dockerfile -t AIRTONMOREIRA/donation-service:${{ github.sha }} .
-        docker build -f docker/DonationWorker.Dockerfile -t AIRTONMOREIRA/donation-worker:${{ github.sha }} .
-        docker build -f docker/TransparencyService.Dockerfile -t AIRTONMOREIRA/transparency-service:${{ github.sha }} .
+        docker build -f docker/AuthService.Dockerfile -t docker.io/AIRTONMOREIRA/auth-service:${{ github.sha }} .
+        docker build -f docker/CampaignService.Dockerfile -t docker.io/AIRTONMOREIRA/campaign-service:${{ github.sha }} .
+        docker build -f docker/DonationService.Dockerfile -t docker.io/AIRTONMOREIRA/donation-service:${{ github.sha }} .
+        docker build -f docker/DonationWorker.Dockerfile -t docker.io/AIRTONMOREIRA/donation-worker:${{ github.sha }} .
+        docker build -f docker/TransparencyService.Dockerfile -t docker.io/AIRTONMOREIRA/transparency-service:${{ github.sha }} .
 
     - name: Login to Docker Hub
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -46,19 +46,19 @@ jobs:
     - name: Push Docker images
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: |
-        docker tag AIRTONMOREIRA/auth-service:${{ github.sha }} AIRTONMOREIRA/auth-service:latest
-        docker tag AIRTONMOREIRA/campaign-service:${{ github.sha }} AIRTONMOREIRA/campaign-service:latest
-        docker tag AIRTONMOREIRA/donation-service:${{ github.sha }} AIRTONMOREIRA/donation-service:latest
-        docker tag AIRTONMOREIRA/donation-worker:${{ github.sha }} AIRTONMOREIRA/donation-worker:latest
-        docker tag AIRTONMOREIRA/transparency-service:${{ github.sha }} AIRTONMOREIRA/transparency-service:latest
+        docker tag docker.io/AIRTONMOREIRA/auth-service:${{ github.sha }} docker.io/AIRTONMOREIRA/auth-service:latest
+        docker tag docker.io/AIRTONMOREIRA/campaign-service:${{ github.sha }} docker.io/AIRTONMOREIRA/campaign-service:latest
+        docker tag docker.io/AIRTONMOREIRA/donation-service:${{ github.sha }} docker.io/AIRTONMOREIRA/donation-service:latest
+        docker tag docker.io/AIRTONMOREIRA/donation-worker:${{ github.sha }} docker.io/AIRTONMOREIRA/donation-worker:latest
+        docker tag docker.io/AIRTONMOREIRA/transparency-service:${{ github.sha }} docker.io/AIRTONMOREIRA/transparency-service:latest
         
-        docker push AIRTONMOREIRA/auth-service:${{ github.sha }}
-        docker push AIRTONMOREIRA/auth-service:latest
-        docker push AIRTONMOREIRA/campaign-service:${{ github.sha }}
-        docker push AIRTONMOREIRA/campaign-service:latest
-        docker push AIRTONMOREIRA/donation-service:${{ github.sha }}
-        docker push AIRTONMOREIRA/donation-service:latest
-        docker push AIRTONMOREIRA/donation-worker:${{ github.sha }}
-        docker push AIRTONMOREIRA/donation-worker:latest
-        docker push AIRTONMOREIRA/transparency-service:${{ github.sha }}
-        docker push AIRTONMOREIRA/transparency-service:latest
+        docker push docker.io/AIRTONMOREIRA/auth-service:${{ github.sha }}
+        docker push docker.io/AIRTONMOREIRA/auth-service:latest
+        docker push docker.io/AIRTONMOREIRA/campaign-service:${{ github.sha }}
+        docker push docker.io/AIRTONMOREIRA/campaign-service:latest
+        docker push docker.io/AIRTONMOREIRA/donation-service:${{ github.sha }}
+        docker push docker.io/AIRTONMOREIRA/donation-service:latest
+        docker push docker.io/AIRTONMOREIRA/donation-worker:${{ github.sha }}
+        docker push docker.io/AIRTONMOREIRA/donation-worker:latest
+        docker push docker.io/AIRTONMOREIRA/transparency-service:${{ github.sha }}
+        docker push docker.io/AIRTONMOREIRA/transparency-service:latest
