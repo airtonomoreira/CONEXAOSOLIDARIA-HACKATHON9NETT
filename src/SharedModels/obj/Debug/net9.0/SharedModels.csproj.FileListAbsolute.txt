@@ -1,0 +1,11 @@
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/bin/Debug/net9.0/SharedModels.deps.json
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/bin/Debug/net9.0/SharedModels.dll
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/bin/Debug/net9.0/SharedModels.pdb
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/obj/Debug/net9.0/SharedModels.GeneratedMSBuildEditorConfig.editorconfig
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/obj/Debug/net9.0/SharedModels.AssemblyInfoInputs.cache
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/obj/Debug/net9.0/SharedModels.AssemblyInfo.cs
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/obj/Debug/net9.0/SharedModels.csproj.CoreCompileInputs.cache
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/obj/Debug/net9.0/SharedModels.dll
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/obj/Debug/net9.0/refint/SharedModels.dll
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/obj/Debug/net9.0/SharedModels.pdb
+/home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/SharedModels/obj/Debug/net9.0/ref/SharedModels.dll

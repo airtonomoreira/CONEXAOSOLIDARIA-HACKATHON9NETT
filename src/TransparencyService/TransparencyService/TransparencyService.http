@@ -1,0 +1,6 @@
+@TransparencyService_HostAddress = http://localhost:5177
+
+GET {{TransparencyService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

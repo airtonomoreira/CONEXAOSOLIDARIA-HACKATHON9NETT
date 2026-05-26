@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "3qdCbDwPp7o200G5ZbT+77BHrcFhoocIqXMb8U/ZfOE=",
+  "Source": "DonationService",
+  "BasePath": "_content/DonationService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,0 +1,176 @@
+services:
+  # SQL Server para AuthService
+  sqlserver-auth:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: "0:0"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1436:1433"
+    volumes:
+      - sqlserver_auth_data:/var/opt/mssql
+    networks:
+      - conexao-solidaria
+
+  # SQL Server para CampaignService
+  sqlserver-campaign:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: "0:0"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1437:1433"
+    volumes:
+      - sqlserver_campaign_data:/var/opt/mssql
+    networks:
+      - conexao-solidaria
+
+  # SQL Server para DonationService
+  sqlserver-donation:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: "0:0"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1438:1433"
+    volumes:
+      - sqlserver_donation_data:/var/opt/mssql
+    networks:
+      - conexao-solidaria
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin123
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - conexao-solidaria
+
+  # AuthService
+  auth-service:
+    build:
+      context: .
+      dockerfile: docker/AuthService.Dockerfile
+    ports:
+      - "5011:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver-auth,1433;Database=AuthDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;
+    depends_on:
+      - sqlserver-auth
+      - rabbitmq
+    networks:
+      - conexao-solidaria
+
+  # CampaignService
+  campaign-service:
+    build:
+      context: .
+      dockerfile: docker/CampaignService.Dockerfile
+    ports:
+      - "5012:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver-campaign,1433;Database=CampaignDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;
+    depends_on:
+      - sqlserver-campaign
+      - rabbitmq
+    networks:
+      - conexao-solidaria
+
+  # DonationService
+  donation-service:
+    build:
+      context: .
+      dockerfile: docker/DonationService.Dockerfile
+    ports:
+      - "5013:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver-donation,1433;Database=DonationDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;
+    depends_on:
+      - sqlserver-donation
+      - rabbitmq
+    networks:
+      - conexao-solidaria
+
+  # DonationWorker
+  donation-worker:
+    build:
+      context: .
+      dockerfile: docker/DonationWorker.Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver-donation,1433;Database=DonationDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;
+    depends_on:
+      - sqlserver-donation
+      - rabbitmq
+    networks:
+      - conexao-solidaria
+
+  # TransparencyService
+  transparency-service:
+    build:
+      context: .
+      dockerfile: docker/TransparencyService.Dockerfile
+    ports:
+      - "5014:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver-campaign,1433;Database=CampaignDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;
+    depends_on:
+      - sqlserver-campaign
+    networks:
+      - conexao-solidaria
+
+  # Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - conexao-solidaria
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - prometheus
+    networks:
+      - conexao-solidaria
+
+volumes:
+  sqlserver_auth_data:
+  sqlserver_campaign_data:
+  sqlserver_donation_data:
+  rabbitmq_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  conexao-solidaria:
+    driver: bridge

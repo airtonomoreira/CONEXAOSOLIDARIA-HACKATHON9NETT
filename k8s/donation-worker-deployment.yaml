@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: donation-worker
+  labels:
+    app: donation-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: donation-worker
+  template:
+    metadata:
+      labels:
+        app: donation-worker
+    spec:
+      containers:
+      - name: donation-worker
+        image: conexao-solidaria/donation-worker:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"
+        - name: ConnectionStrings__DefaultConnection
+          valueFrom:
+            configMapKeyRef:
+              name: connection-strings
+              key: donation-connection
+        - name: RabbitMQ__HostName
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq-config
+              key: hostname
+        - name: RabbitMQ__UserName
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-secret
+              key: username
+        - name: RabbitMQ__Password
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-secret
+              key: password
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: donation-worker
+spec:
+  selector:
+    app: donation-worker
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP

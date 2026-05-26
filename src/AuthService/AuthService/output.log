@@ -1,0 +1,9 @@
+Using launch settings from /home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/AuthService/AuthService/Properties/launchSettings.json...
+Building...
+[14:16:31 INF] User profile is available. Using '/home/airton/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+[14:16:31 INF] Now listening on: http://localhost:5014
+[14:16:31 INF] Application started. Press Ctrl+C to shut down.
+[14:16:31 INF] Hosting environment: Development
+[14:16:31 INF] Content root path: /home/airton/git/fiap/desafio-final-hacaton/ConexaoSolidaria/src/AuthService/AuthService
+[14:16:34 INF] Request starting HTTP/1.1 GET http://localhost:5014/swagger/index.js - null null
+[14:16:34 INF] Request finished HTTP/1.1 GET http://localhost:5014/swagger/index.js - 200 null application/javascript;charset=utf-8 70.1523ms

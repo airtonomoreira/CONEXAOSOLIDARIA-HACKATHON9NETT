@@ -1,0 +1,38 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'auth-service'
+    static_configs:
+      - targets: ['auth-service:8080']
+        labels:
+          service: 'AuthService'
+
+  - job_name: 'campaign-service'
+    static_configs:
+      - targets: ['campaign-service:8080']
+        labels:
+          service: 'CampaignService'
+
+  - job_name: 'donation-service'
+    static_configs:
+      - targets: ['donation-service:8080']
+        labels:
+          service: 'DonationService'
+
+  - job_name: 'transparency-service'
+    static_configs:
+      - targets: ['transparency-service:8080']
+        labels:
+          service: 'TransparencyService'
+
+  - job_name: 'donation-worker'
+    static_configs:
+      - targets: ['donation-worker:8080']
+        labels:
+          service: 'DonationWorker'
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

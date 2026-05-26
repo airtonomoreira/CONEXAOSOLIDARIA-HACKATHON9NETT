@@ -1,0 +1,7 @@
+{
+  "AuthService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/airton\/git\/fiap\/desafio-final-hacaton\/ConexaoSolidaria\/src\/AuthService\/AuthService",
+  "CampaignService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/airton\/git\/fiap\/desafio-final-hacaton\/ConexaoSolidaria\/src\/CampaignService\/CampaignService",
+  "DonationService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/airton\/git\/fiap\/desafio-final-hacaton\/ConexaoSolidaria\/src\/DonationService\/DonationService",
+  "SharedModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/airton\/git\/fiap\/desafio-final-hacaton\/ConexaoSolidaria\/src\/SharedModels",
+  "TransparencyService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/airton\/git\/fiap\/desafio-final-hacaton\/ConexaoSolidaria\/src\/TransparencyService\/TransparencyService"
+}

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: connection-strings
+data:
+  auth-connection: "Server=sqlserver-auth,1433;Database=AuthDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;"
+  campaign-connection: "Server=sqlserver-campaign,1433;Database=CampaignDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;"
+  donation-connection: "Server=sqlserver-donation,1433;Database=DonationDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq-config
+data:
+  hostname: "rabbitmq"
